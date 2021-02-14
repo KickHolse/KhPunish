@@ -1,0 +1,50 @@
+# ─────────────────────────────────────────────────── #
+#                 ▒███████▒ ███▄    █     ──          #
+#                 ▒ ▒ ▒ ▄▀░ ██ ▀█   █                 #
+#     ───         ░ ▒ ▄▀▒░ ▓██  ▀█ ██▒                #
+#                   ▄▀▒   ░▓██▒  ▐▌██▒                #
+#                 ▒███████▒▒██░   ▓██░                #
+#                 ░▒▒ ▓░▒░▒░ ▒░   ▒ ▒                 #
+#                 ░░▒ ▒ ░ ▒░ ░░   ░ ▒░                #
+#                 ░ ░ ░ ░ ░   ░   ░ ░      ───        #
+#                   ░ ░             ░                 #
+#   ─             ░                                   #
+# ─────────────────────────────────────────────────── #
+options:
+#	Nome: KhPunish | Autor: Kiberzn
+	version: 1.4
+
+# ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── #
+# events
+join:
+	khcore_notifyUpdate(player, "KhPunish", "khpunish", "693646", "{@version}", "khcl atualizar")
+
+# ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── #
+# commands
+
+# ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── #
+# file manager
+#function khcollects_filemanager(use: text):
+#	{_use} == "value":
+#		loop currently loaded yaml files:
+#			loop-value contains "khcl.collectibles.particles" or "khcl.collectibles.hats"
+#			unload yaml loop-value-1
+#		loop "particles" and "hats":
+#			load yaml "plugins/KhCollectibles/collectibles/%loop-value%.yml" as "khcl.collectibles.%loop-value%"
+#	{_use} == "create":
+#		khcollects_filemanager("value")
+
+# ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── #
+# functions and sub
+
+# ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── #
+# load
+load:
+	#khcollects_filemanager("create")
+	wait 1 second
+	text from "https://api.spigotmc.org/legacy/update.php?resource=693646" != "{@version}":
+		set {khban::check_update} to "true"
+		send "&3[KHPUNISH] &cYou are not using the latest version of skript" to console
+	else:
+		send "&3[KHPUNISH] &aYou are using the latest version of skript" to console
+	send "&3[KHPUNISH] &aKhPunish &8v{@version} &aenabled!" to console
